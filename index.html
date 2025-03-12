@@ -40,6 +40,8 @@
     </div>
     <p id="response"></p>
     <img src="96-1.png">
+    <br>
+    <button onclick="restartGame()">最初からやり直す</button>
 
     <script>
         function respond(choice) {
@@ -90,7 +92,12 @@
             }
             document.getElementById("response").innerText = responseText;
         }
+
+        function restartGame() {
+            location.reload();
+        }
     </script>
 </body>
 </html>
+
 
