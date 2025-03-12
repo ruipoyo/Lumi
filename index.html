@@ -1,1 +1,94 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恋愛ゲーム</title>
+    <style>
+        image{
+            background-color: violet;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .choice-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .choice {
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>おますき回避</h1>
+    <p>君はおますきと放課後に二人きりになった。どうする？</p>
+    <div class="choice-container" id="choices">
+        <button class="choice" onclick="respond(1)">優しく話し返す。</button>
+        <button class="choice" onclick="respond(2)">おもしろいねとほめる。</button>
+        <button class="choice" onclick="respond(3)">気づかないふりをし、無視する。</button>
+        <button class="choice" onclick="respond(4)">早歩きで逃亡を図る。</button>
+    </div>
+    <p id="response"></p>
+    <img src="96-1.png">
+
+    <script>
+        function respond(choice) {
+            let responseText = "";
+            let choicesDiv = document.getElementById("choices");
+
+            if (choice === 1 || choice === 2) {
+                responseText = "お前俺のこと好きだろ(BADEND)";
+                choicesDiv.innerHTML = ""; // ボタンを消す
+            } else {
+                responseText = "おますきは悩んでいる... 次の行動を選ぼう。";
+                choicesDiv.innerHTML = `
+                    <button class="choice" onclick="nextStep(1)">かわいそうだと思い、話しかけてあげる。</button>
+                    <button class="choice" onclick="nextStep(2)">耳をマフラーでふさぎ無視を続ける。</button>
+                    <button class="choice" onclick="nextStep(3)">小走りで帰る。</button>
+                `;
+            }
+            document.getElementById("response").innerText = responseText;
+        }
+
+        function nextStep(step) {
+            let responseText = "";
+            let choicesDiv = document.getElementById("choices");
+            
+            if (step === 1) {
+                responseText = "そっちから話しかけてくるなんて。お前俺のこと好きだろ。";
+                choicesDiv.innerHTML = ""; // ボタンを消す
+            } else {
+                responseText = "おますきはさらに悩んでいる... 次の行動を選ぼう。";
+                choicesDiv.innerHTML = `
+                    <button class="choice" onclick="finalStep(1)">目も耳もふさいで無視！</button>
+                    <button class="choice" onclick="finalStep(2)">ガンダッシュで家へ！</button>
+                `;
+            }
+            document.getElementById("response").innerText = responseText;
+        }
+
+        function finalStep(step) {
+            let responseText = "";
+            if (step === 1) {
+                responseText = "俺に照れてるのか？お前俺のこと好きだろ(BADEND)";
+            } else if (step === 2) {
+                responseText = "無事に撒けました！ゲームクリアおめでとう！";
+            }
+            document.getElementById("response").innerText = responseText;
+        }
+    </script>
+</body>
+</html>
