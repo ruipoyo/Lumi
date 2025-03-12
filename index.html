@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>恋愛ゲーム</title>
     <style>
-        image{
-            background-color: violet;
-        }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            background-color: violet;
         }
         #response {
             margin-top: 20px;
@@ -82,13 +79,18 @@
 
         function finalStep(step) {
             let responseText = "";
+            let choicesDiv = document.getElementById("choices");
+            
             if (step === 1) {
                 responseText = "俺に照れてるのか？お前俺のこと好きだろ(BADEND)";
+                choicesDiv.innerHTML = ""; // すべての選択肢を消す
             } else if (step === 2) {
                 responseText = "無事に撒けました！ゲームクリアおめでとう！";
+                choicesDiv.innerHTML = ""; // すべての選択肢を消す
             }
             document.getElementById("response").innerText = responseText;
         }
     </script>
 </body>
 </html>
+
